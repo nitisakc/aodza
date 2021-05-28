@@ -25,7 +25,7 @@ void trigger() {
     counter--;
   }
 
-  if(counter > 999 || counter < 0){ counter = 0; } // จำกัดช่วง 0-1000
+  if(counter > 999 || counter < 0){ counter = 0; } // จำกัดช่วง 0-999 (range 1000)
 
   if( //เงื่อนนไขยิงกาว
       (counter >= 0 && counter <= 99) 
