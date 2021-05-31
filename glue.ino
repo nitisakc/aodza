@@ -47,7 +47,7 @@ void trigger() {
       digitalWrite(13, LOW); 
   }
     
-  if(counter > ((range*2)-1)){
+  if(counter >= ((range*2)-1)){
       btnInput = 0;
   }
 }
