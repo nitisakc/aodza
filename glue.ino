@@ -1,6 +1,7 @@
 int temp, counter = 0;
 bool btnInput = 0;
-int rg;
+int range;
+int prevMillis = 0, currMillis = 0
     
 void setup() {
   Serial.begin (9600);
@@ -14,7 +15,7 @@ void setup() {
 }
    
 void loop() {
-  rg = map(analogRead(A1), 0, 1024, 0, 1000);
+  range = map(analogRead(A1), 0, 1024, 0, 1000);
   if(digitalRead(9) == LOW){
       btnInput = 1;
       counter = 0;
@@ -23,6 +24,12 @@ void loop() {
   if( counter != temp ){ //ค่าเปลื่ยนแปลงให้แแสดงผล
     Serial.println (counter);
     temp = counter;
+  }
+    
+  currMillis = millis();
+  if ((currMillis - prevMillis) > 1000) {
+    prevMillis = currMillis;
+    //ทำทุก 1 หำแ  
   }
 }
  
@@ -34,13 +41,13 @@ void trigger() {
     counter--;
   }
     
-  if(btnInput == 1 && counter > (rg-1) && counter < ((rg*2)-1)){
+  if(btnInput == 1 && counter > (range-1) && counter < ((range*2)-1)){
       digitalWrite(13, HIGH);
   }else{
       digitalWrite(13, LOW); 
   }
     
-  if(counter > ((rg*2)-1)){
+  if(counter > ((range*2)-1)){
       btnInput = 0;
   }
 }
